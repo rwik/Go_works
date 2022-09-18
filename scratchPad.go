@@ -6,6 +6,11 @@ import (
 	"time"
 )
 
+//map declaration
+var (
+	allData = make(map[string]string)
+)
+
 //init function executes before main
 func init() {
 	fmt.Println("Inside init")
@@ -82,7 +87,7 @@ func main() {
 	//main is executable package
 	//all other packages are called utility package
 	//$GOPATH/src contains all suuporting modules
-	// go get gthub.com/package
+	// go get github.com/package
 	// will fetch package and save to src folder
 	//go.mod (import path,version,dependency)
 	//go.sum (checksum for dependencies)
@@ -159,6 +164,31 @@ func main() {
 	valstr1, err := strconv.Atoi(str1)
 	if err == nil {
 		fmt.Println("String str1 is a number", valstr1)
+	}
+	//color output
+	fmt.Println(string("\033[31m"), "test", string("\033[0m"))
+
+	//map usage
+	//fmt.Println(allData[key])
+	//allData[key]=value
+
+	//when panic is called , deffered functions will be executed
+	/*defer fmt.Println("Before panic")
+	panic("Now panic")
+	fmt.Println("After panic")// this wont execute*/
+
+	// recovering from panic using defer
+	// defer recoverFromPanic()
+	// {
+	// 	panic(" Raise panic")
+	// }
+	// fmt.Println("Recovered from panic")
+
+}
+
+func recoverFromPanic() {
+	if r := recover(); r != nil {
+		fmt.Println("panic details", r)
 	}
 }
 
